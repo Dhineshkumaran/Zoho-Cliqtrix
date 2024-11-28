@@ -19,6 +19,8 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 app.post("/generate", async (req, res) => {
   try {
+    console.log(req.body);
+    
     const { prompt } = req.body;
 
     if (!prompt) {
@@ -26,7 +28,7 @@ app.post("/generate", async (req, res) => {
     }
 
     const result = await Promise.race([
-      model.generateContent("Assume yourself as Zoho salesIQ bot handler. Please respond to query: "+prompt),
+      model.generateContent("Assume yourself as Zoho salesIQ bot handler. Please respond to query with complimenting emoji's: "+prompt),
       new Promise((_, reject) =>
         setTimeout(() => reject(new Error("Request timeout")), 15000)
       ),

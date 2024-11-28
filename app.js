@@ -27,7 +27,7 @@ app.post("/generate", async (req, res) => {
     }
 
     const result = await Promise.race([
-      model.generateContent("Assume yourself as Zoho salesIQ bot handler. Please respond to query with complimenting emoji's: "+prompt),
+      model.generateContent("Assume yourself as Zoho salesIQ bot handler. Please respond to query with complimenting words: "+prompt),
       new Promise((_, reject) =>
         setTimeout(() => reject(new Error("Request timeout")), 15000)
       ),

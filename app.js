@@ -19,7 +19,6 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 app.post("/generate", async (req, res) => {
   try {
-    console.log(req.body);
     
     const { prompt } = req.body;
 
@@ -35,7 +34,7 @@ app.post("/generate", async (req, res) => {
     ]);
 
     if (result?.response?.text) {
-      res.status(200).json({ response: result.response.text() });
+      res.status(200).json({ response: result.response.text().replace("*", "") });
     } else {
       res.status(500).json({ error: "Unexpected response from the AI model" });
     }
